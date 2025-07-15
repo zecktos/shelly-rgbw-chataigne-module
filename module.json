@@ -1,0 +1,158 @@
+{
+  "name": "Shelly Bulb RGBW",
+  "type": "HTTP",
+  "path": "Hardware",
+  "version": "0.1.0",
+  "description": "basic control for shelly rgbw bulbs",
+  "url": "",
+  "downloadURL": "",
+  "hasInput": true,
+  "hasOutput": true,
+  "hideDefaultCommands": true,
+  "hideDefaultParameters": [
+    "protocol",
+    "authentication",
+    "autoAdd"
+  ],
+  "defaults": {
+    "baseAddress": "http://192.168.33.1/",
+    "autoAdd": true,
+    "protocol": "JSON",
+    "authentication": {
+      "enabled": false
+    }
+  },
+  "parameters": {},
+  "scripts": [
+    "shellyLight.js"
+  ],
+  "values": {
+    "mode": {
+      "type": "String",
+      "readonly": true
+    }
+  },
+  "commands": {
+    "set white": {
+      "menu": "",
+      "callback": "setWhite",
+      "parameters": {
+        "change state": {
+          "type": "Enum",
+          "options": {
+            "no": "",
+            "turn on": "turn=on&",
+            "turn off": "turn=off&"
+          },
+          "description": "change on/off state"
+        },
+        "Brightness": {
+          "type": "Integer",
+          "description": "Brightness in %",
+          "min": 0,
+          "max": 100,
+          "default": 100
+        },
+        "Temperatur": {
+          "type": "Integer",
+          "description": "temperature in K",
+          "min": 3000,
+          "max": 6500,
+          "default": 4000
+        }
+      }
+    },
+    "set color": {
+      "menu": "",
+      "callback": "setColor",
+      "parameters": {
+        "change state": {
+          "type": "Enum",
+          "options": {
+            "no": "",
+            "turn on": "turn=on&",
+            "turn off": "turn=off&"
+          },
+          "description": "change on/off state"
+        },
+        "Color": {
+          "type": "Color",
+          "description": "Color of the Light",
+          "default": [
+            1,
+            1,
+            1,
+            1
+          ]
+        },
+        "Gain": {
+          "type": "Integer",
+          "description": "Gain of all Channels",
+          "min": 0,
+          "max": 100,
+          "default": 100
+        }
+      }
+    },
+    "set blink effect": {
+      "menu": "",
+      "callback": "setBlink",
+      "parameters": {
+        "blink": {
+          "type": "Enum",
+          "options": {
+            "off": "0",
+            "on": "3"
+          }
+        }
+      },
+      "description": "enable/disable blink effect ONLY IN COLOR MODE"
+    },
+    "turn on": {
+      "menu": "",
+      "callback": "turnOn",
+      "description": "turn Light on"
+    },
+    "turn off": {
+      "menu": "",
+      "callback": "turnOff",
+      "description": "turn Light off"
+    },
+    "set mode": {
+      "menu": "sys",
+      "callback": "setMode",
+      "parameters": {
+        "Mode": {
+          "type": "Enum",
+          "options": {
+            "color": "color",
+            "white": "white"
+          },
+          "description": "operation mode color or white"
+        }
+      }
+    },
+    "toggle on/off": {
+      "menu": "",
+      "callback": "toggle"
+    },
+    "get status": {
+      "menu": "sys",
+      "callback": "getStatus"
+    },
+    "reboot": {
+      "menu": "sys",
+      "callback": "reboot"
+    },
+    "custom command": {
+      "menu": "sys",
+      "callback": "customCmd",
+      "parameters": {
+        "query-string": {
+          "type": "String",
+          "description": "commands as http query string appended to base address"
+        }
+      }
+    }
+  }
+}
