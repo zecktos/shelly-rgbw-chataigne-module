@@ -7,5 +7,5 @@ This is a Chataigne custom module for basic control of Shelly RGBW bulbs. This m
 - enter the shelly bulb ip address in the Base Address field; if you connected your Chataigne host to the wifi of the shelly bulb the default value should work
 
 ## note
-For "set color" to work your bulb needs to be set in "color mode" via the web interface of the bulb or via this module "sys -> set mode"
+For `set color` to work your bulb needs to be set in `color mode` via the web interface of the bulb or via this module `sys -> set mode`
 
